@@ -45,7 +45,7 @@ localhost:8040 in browser
 * [Mongoose](http://mongoosejs.com/docs/) - an Object Document Mapper (ODM) JavaScript library used to store, save, delete comments and articles mapped to a MongoDB
 * [Cheerio](https://www.npmjs.com/package/cheerio) - a Node.js library, which is a  jQuery like tool for the server used in web scraping
 * [Body-Parser](https://www.npmjs.com/package/inquirer) - middleware used to extract the body from the incoming requests
-* [Request](https://www.npmjs.com/package/request)
+* [Request](https://www.npmjs.com/package/request) - the simplest way possible to make http calls
 * [Bootstrap](https://www.bootstrapcdn.com/) - component library for a front-end responsive framework
 * [jQuery](https://jquery.com/) - JavaScript library for DOM traversal and manipulation
 * [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started) - Asynchronous JavaScript and XML used to perform a callback, making a quick round trip to and from the server to retrieve and/or save data without posting the entire page back to the server
