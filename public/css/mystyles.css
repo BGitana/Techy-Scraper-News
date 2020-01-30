@@ -144,10 +144,12 @@ a:active {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+
+
 .article-outer-container:hover,
 .article-outer-container:focus,
 .article-card-flex:hover,
-article-card-flex:focus {
+.article-card-flex:focus {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
@@ -185,12 +187,42 @@ article-card-flex:focus {
   text-decoration: none;
 }
 
-.comment-btn {
-  border: 1.25px solid rgba(0, 0, 0, 0.215);
+.comment-btn,
+.submit-comment {
   margin: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: rgb(54, 11, 245);
+  border-color: rgb(54, 11, 245);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+  color: rgb(225, 230, 235);
 }
 
-.delete-btn {
+.comment-btn:hover,
+.comment-btn:focus {
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+  background-color: rgb(250, 39, 1);
+  /* border-color: rgb(54, 11, 245); */
+  color: rgb(225, 230, 235);
+}
+
+#submit-comment {
+  margin: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: rgb(54, 11, 245);
+  border-color: rgb(54, 11, 245);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+  color: rgb(225, 230, 235);
+}
+
+#submit-comment:hover,
+#submit-comment:focus {
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+  background-color: rgb(250, 39, 1);
+  /* border-color: rgb(54, 11, 245); */
+  color: rgb(225, 230, 235);
+}
+
+.delete-comment-btn {
   margin: 10px;
 }
 
