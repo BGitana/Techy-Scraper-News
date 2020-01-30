@@ -1,95 +1,109 @@
 //ON PAGE LOAD RENDER SAVED ARTICLES://
 axios.get("/articles").then(response => {
-    renderLibrary(response.data)
-})
+  renderLibrary(response.data);
+});
 
 $(".clean-slate").on("click", event => {
-    event.preventDefault()
-    axios.delete("/articles/clear")
-        .then(response => {
-            console.log(response)
-        }).catch(error => {
-            console.log(error)
-        })
-    $("#articles-container").empty()
-})
-
-$(document).on("click", ".delete-btn", function (event) {
-    event.preventDefault()
-    let id = $(this).data("id");
-    let $selectedArticle = $(this).parent().parent().parent().parent();
-    $selectedArticle.remove()
-    deleteArticle(id)
-})
-
-$(document).on("click", ".comment-btn", function (event) {
-    event.preventDefault();
-    let id = $(this).data("id");
-    axios.get(`/article/${id}`)
-        .then(response => {
-            renderFinalArticle(response.data)
-        })
-        .catch(error => {
-            console.log(error);
-        });
-})
-
-$(document).on("click", ".delete-comment-btn", function (event) {
-    event.preventDefault()
-    let id = $(this).data("id");
-    let $comment = $(this).parent();
-    axios.delete(`/article/comment/${id}`)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    $comment.remove()
-})
-
-$(document).on("click", "#submit-comment", function (event) {
-    event.preventDefault()
-    let $article_id = $(this).data("id");
-
-    axios.post(`/article/comment/${$article_id}`, {
-        user: $("#username").val().trim(),
-        body: $("#comment-text").val().trim()
-    }).then(response => {
-
-        axios.get(`/article/${$article_id}`)
-            .then(response => {
-                renderFinalArticle(response.data)
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-    }).catch(error => {
-        console.log(error)
+  event.preventDefault();
+  axios
+    .delete("/articles/clear")
+    .then(response => {
+      console.log(response);
     })
-    $("#comment-text").val('');
-    $("#username").val('');
-})
+    .catch(error => {
+      console.log(error);
+    });
+  $("#articles-container").empty();
+});
+
+$(document).on("click", ".delete-btn", function(event) {
+  event.preventDefault();
+  let id = $(this).data("id");
+  let $selectedArticle = $(this)
+    .parent()
+    .parent()
+    .parent()
+    .parent();
+  $selectedArticle.remove();
+  deleteArticle(id);
+});
+
+$(document).on("click", ".comment-btn", function(event) {
+  event.preventDefault();
+  let id = $(this).data("id");
+  axios
+    .get(`/article/${id}`)
+    .then(response => {
+      renderFinalArticle(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
+
+$(document).on("click", ".delete-comment-btn", function(event) {
+  event.preventDefault();
+  let id = $(this).data("id");
+  let $comment = $(this).parent();
+  axios
+    .delete(`/article/comment/${id}`)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  $comment.remove();
+});
+
+$(document).on("click", "#submit-comment", function(event) {
+  event.preventDefault();
+  let $article_id = $(this).data("id");
+
+  axios
+    .post(`/article/comment/${$article_id}`, {
+      user: $("#username")
+        .val()
+        .trim(),
+      body: $("#comment-text")
+        .val()
+        .trim()
+    })
+    .then(response => {
+      axios
+        .get(`/article/${$article_id}`)
+        .then(response => {
+          renderFinalArticle(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  $("#comment-text").val("");
+  $("#username").val("");
+});
 
 function deleteArticle(id) {
-    axios.delete(`/article/delete/${id}`)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+  axios
+    .delete(`/article/delete/${id}`)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 function renderLibrary(data) {
+  let $target = $("#articles-container");
+  let $regularContainer = $('<div class="container">');
+  $target.empty();
 
-    let $target = $("#articles-container");
-    let $regularContainer = $('<div class="container">')
-    $target.empty()
-
-    data.forEach(({ link, title, author, authorLink, _id, imgSrc }) => {
-        let $article = $(`
+  data.forEach(({ link, title, author, authorLink, _id, imgSrc }) => {
+    let $article = $(`
             <div class="row justify-content-center article-row">
                 <div class="col-12">
                     <div class="article-outer-container">
@@ -106,21 +120,20 @@ function renderLibrary(data) {
                     </div>
                 </div>
             </div>
-            `)
-        $regularContainer.prepend($article)
-    })
-    $target.prepend($regularContainer)
+            `);
+    $regularContainer.prepend($article);
+  });
+  $target.prepend($regularContainer);
 }
 
 function renderFinalArticle(data) {
+  console.log(JSON.stringify(data, undefined, 2));
 
-    console.log(JSON.stringify(data, undefined, 2));
+  let $target = $("#articles-container");
+  $target.empty();
 
-    let $target = $("#articles-container");
-    $target.empty();
-
-    //LATER CONVER TO SEPARATE FUNCTION: renderArticle()//
-    $target.append(`
+  //LATER CONVER TO SEPARATE FUNCTION: renderArticle()//
+  $target.append(`
         <div class="row">
             <div class="col-xl-6 col-lg-7 col-md-12 col-sm-12 final-img-outer-container">
                 <a href="${data.link}" target="_blank">
@@ -140,24 +153,24 @@ function renderFinalArticle(data) {
         </div>
     `);
 
-    let $commentsBox = $("#comments-box");
-    if (data.comment === undefined || data.comment === null) {
-        let $addComments = renderAddComment(data._id)
-        $(".clean-slate").hide()
-        $commentsBox.empty()
-        $commentsBox.prepend($addComments)
-    } else {
-        let $comments = renderComments(data.comment)
-        let $addComment = renderAddComment(data._id)
-        $(".clean-slate").hide()
-        $commentsBox.empty()
-        $commentsBox.append($comments)
-        $commentsBox.append($addComment)
-    }
+  let $commentsBox = $("#comments-box");
+  if (data.comment === undefined || data.comment === null) {
+    let $addComments = renderAddComment(data._id);
+    $(".clean-slate").hide();
+    $commentsBox.empty();
+    $commentsBox.prepend($addComments);
+  } else {
+    let $comments = renderComments(data.comment);
+    let $addComment = renderAddComment(data._id);
+    $(".clean-slate").hide();
+    $commentsBox.empty();
+    $commentsBox.append($comments);
+    $commentsBox.append($addComment);
+  }
 }
 
 function renderAddComment(_id) {
-    return (`
+  return `
     <form>
         <div class="form-group pt-3">
             <label for="comment-text">Comment:</label>
@@ -168,11 +181,11 @@ function renderAddComment(_id) {
         </div>
         <button type="submit" class="btn btn-warning" id="submit-comment" data-id="${_id}">Submit</button>
     </form>
-    `)
+    `;
 }
 
 function renderComments({ _id, body, user }) {
-    return (`
+  return `
     <div class="cards-columns">
         <div class="p-3 delete-comment-btn" data-id="${_id}" style="display: inline-block; color: white; background-color: crimson; border-radius: 5px;">
             <i class="fa fa-trash fa-sm" aria-hidden="true"></i>
@@ -188,5 +201,5 @@ function renderComments({ _id, body, user }) {
             </blockquote>
         </div>
     </div>
-    `)
+    `;
 }

@@ -1,38 +1,37 @@
-$(document).on("click", ".save-btn", function (event) {
-    event.preventDefault()
-    saveArticle($(this).parent())
-})
+$(document).on("click", ".save-btn", function(event) {
+  event.preventDefault();
+  saveArticle($(this).parent());
+});
 
-$("#scrape-btn").on("click", function (event) {
-    event.preventDefault();
-    axios.get("/scrape")
-        .then(response => {
-            renderArticles(response.data)
-        })
-})
+$("#scrape-btn").on("click", function(event) {
+  event.preventDefault();
+  axios.get("/scrape").then(response => {
+    renderArticles(response.data);
+  });
+});
 
 function saveArticle(card) {
-    let newArticle = {}
-    newArticle.title = card.find(".article-title").text()
-    newArticle.link = card.find(".article-link").attr("href")
-    newArticle.author = card.find(".article-author").text()
-    newArticle.authorLink = card.find(".author-link").attr("href")
-    newArticle.imgSrc = card.find(".card-img-top").attr("src");
-    axios.post("/article/save", { newArticle })
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+  let newArticle = {};
+  newArticle.title = card.find(".article-title").text();
+  newArticle.link = card.find(".article-link").attr("href");
+  newArticle.author = card.find(".article-author").text();
+  newArticle.authorLink = card.find(".author-link").attr("href");
+  newArticle.imgSrc = card.find(".card-img-top").attr("src");
+  axios
+    .post("/article/save", { newArticle })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 function renderArticles(data) {
-    let $target = $("#articles-container");
-    $target.empty()
-    data.forEach(({ imgSrc, link, title, author, authorLink, _id}) => {
-        let $card = $(`<div class="card mr-4 mb-4" style="width: 18rem;">`)
-            .html(`
+  let $target = $("#articles-container");
+  $target.empty();
+  data.forEach(({ imgSrc, link, title, author, authorLink, _id }) => {
+    let $card = $(`<div class="card mr-4 mb-4" style="width: 18rem;">`).html(`
             <div class="card article-card article-card-flex">
 
                 <img class="card-img-top" src="${imgSrc}" alt="Card image cap">
@@ -48,8 +47,8 @@ function renderArticles(data) {
                 <button type="button" class="btn btn-primary article-btn save-btn">Save</button>
 
             </div>
-            `)
-            
-        $target.append($card)
-    })
+            `);
+
+    $target.append($card);
+  });
 }

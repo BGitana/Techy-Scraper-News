@@ -3,8 +3,7 @@ Mongoose and Cheerio
 
 ### Overview
 **Techy-Scraper-News** is a web app that lets users view the latest articles from popular tech sites or blogs and save their favorites into a personalized library. Whenever a user visits the site, the app scrapes stories from [THE VERGE](https://www.theverge.com/) and display them for the user. The user can then save articles for later viewing. Once an article is saved, the user can add notes to the article and delete each note.
-Welcome to [Techy-Scraper-News](https://dry-badlands-26968.herokuapp.com/). Enjoy!
-
+Welcome to [Techy-Scraper-News](https://limitless-shore-65628.herokuapp.com/). Enjoy!
 
 
 ### Commands

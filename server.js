@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
-
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 
 let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraper";
@@ -28,5 +27,5 @@ require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
 app.listen(PORT, function() {
-    console.log(`App listening on http://localhost:${PORT}`)
-})
+  console.log(`App listening on http://localhost:${PORT}`);
+});
