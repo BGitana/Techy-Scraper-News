@@ -1,5 +1,5 @@
-* Sticky footer styles/
-//*********************/
+/* * Sticky footer styles/ */
+/* ********************* */
 html {
   position: relative;
   min-height: 100%;
@@ -120,13 +120,18 @@ a:active {
   width: 125px;
   margin-bottom: 20px;
   margin-left: 20px;
-  background-color: rgba(125, 12, 125, 0.75);
-  border: purple;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  text-shadow: 2px 2px 4px #000000;
+  border-color: rgb(225, 230, 235);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+  background-color: black;
 }
 
 .save-btn:hover,
 .save-btn:focus {
-  background-color: rgba(65, 0, 65, 0.746);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+  background-color: rgb(54, 11, 245);
+  border-color: rgb(54, 11, 245);
 }
 
 .article-outer-container {
