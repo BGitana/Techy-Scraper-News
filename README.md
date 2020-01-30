@@ -35,7 +35,7 @@ Returns the friends data in JSON format to the browser.
 
 ### What App Does
 
-*Techy-Scraper-News* leverages mongoose.js to communicate with a MongoDB database hosted in the cloud with Heroku. The on-screen buttons trigger the appropriate request via express routing to fetch or update a respective articles data -- the response is rendered in the browser using JavaScript or jQuery.
+**Techy-Scraper-News** leverages mongoose.js to communicate with a MongoDB database hosted in the cloud with Heroku. The on-screen buttons trigger the appropriate request via express routing to fetch or update a respective articles data -- the response is rendered in the browser using JavaScript or jQuery.
 
 
 ### Tech Used
